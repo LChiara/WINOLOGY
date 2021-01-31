@@ -164,8 +164,8 @@ showMenu(Menu):-
  */
 registerAction :-
     promptRegisterDialog(Rating, RatingEntryValues, WineName, WineEntryValues),
-    print_register_commando(Rating, RatingEntryValues, WineName, WineEntryValues).
-    %register(Rating, RatingEntryValues, WineName, WineEntryValues).
+    createEntries(Rating, RatingEntryValues, WineName, WineEntryValues),
+    register(Rating, RatingEntryValues, WineName, WineEntryValues).
 
 /* classifyAction.
  * prompt the classify dialog where the user can enter all the necessary
@@ -371,14 +371,12 @@ searchWineInDB(_, _, _, _, _, _) :- !.
 
 /* -> End Utility function section */
 
-% DEBUG_MODUS
-print_register_commando(_Rating, RatingEntryValues, _WineName, WineEntryValues):-
+createEntries(_Rating, RatingEntryValues, _WineName, WineEntryValues):-
     createAtom(RatingEntryValues, RegisterEntryAtom),
     writeln(RegisterEntryAtom),
     createAtom(WineEntryValues, WineEntryAtom),
     writeln(WineEntryAtom).
 
-% DEBUG MODUS
 createRequest(EntryValues, Request) :-
     createAtom(EntryValues, Request),
     write('User Request: '),
