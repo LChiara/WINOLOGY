@@ -44,6 +44,8 @@ free_main:-
     free(@register_label),
     free(@check_label),
     free(@search_wine),
+    free(@ok_button),
+    free(@ok),
     free(@cancel_button).
 
 free_dialogs :-
@@ -173,10 +175,11 @@ classifyAction :-
     promptClassifyDialog(EntryValues),
     !,
     startLearningProcess,
-    print_classify_commando(EntryValues),
+    createRequest(EntryValues, SituationDescription),
     writeln("Result ==> "),
-    classify([time="breakfast", food="cereals"], RatingClass),
-    writeln(RatingClass).
+    classify(SituationDescription, RatingClass),
+    writeln(RatingClass),
+    promptRatingResult(SituationDescription, RatingClass).
 
 /* -> END Action section */
 
@@ -309,10 +312,16 @@ promptClassifyDialog(RequestList) :-
                 (   body, Body),
                 (   color, Color),
                 (   effervescence, Effervescence),
-                (   sweetness, Sweetness)],
-    writeln('This is the request:'),
-    writeln(RequestList),
-    writeln('\n').
+                (   sweetness, Sweetness)].
+
+promptRatingResult(Request, Result) :-
+    new(D, dialog('Rating')),
+    atom_concat('Rating: ', Result, RatingResult),
+    send_list(D, append,
+              [new(_, text(Request, center, normal)),
+              new(_, text(RatingResult, center, normal)),
+              new(@ok, button(ok, message(D, destroy)))]),
+    send(D, open_centered).
 
 /* -> END Dialog section */
 
@@ -341,6 +350,8 @@ allowEmpty(DialogEntry) :-
  */
 searchWineInDB(WineName, AromaEntry, BodyEntry, ColorEntry, EffervescenceEntry, SweetnessEntry) :-
     get_wine(wineDescription(WineName, [aroma=Aroma, body=Body, color=Color, effervescence=Effervescence, sweetness=Sweetness])),
+    write('Searched wine => '),
+    writeln(WineName),
     write('aroma='),
     writeln(Aroma),
     write('body='),
@@ -368,9 +379,10 @@ print_register_commando(_Rating, RatingEntryValues, _WineName, WineEntryValues):
     writeln(WineEntryAtom).
 
 % DEBUG MODUS
-print_classify_commando(EntryValues) :-
-    createAtom(EntryValues, EntryAtom),
-    writeln(EntryAtom).
+createRequest(EntryValues, Request) :-
+    createAtom(EntryValues, Request),
+    write('User Request: '),
+    writeln(Request).
 
 
 

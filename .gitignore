@@ -36,6 +36,9 @@
 ehthumbs.db
 Thumbs.db
 
+.idea
+_*
+
 # PROLOG #
 ##########
 *~
