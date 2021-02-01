@@ -242,8 +242,7 @@ promptRegisterDialog(Rating, RatingEntryValues, Name, WineEntryValues):-
                 (   name, Name),
                 (   time, Time),
                 (   food, Food),
-                (   person, Person),
-                (   rating, Rating)],
+                (   person, Person)],
     WineEntryValues = [
                 (   aroma, Aroma),
                 (   body, Body),
