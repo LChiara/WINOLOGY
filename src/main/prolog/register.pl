@@ -27,23 +27,23 @@ register(Rating, RatingEntry, WineName, WineEntry) :-
 /* registerWineInDB(+WineName, +Entry)
  * Register the wine entry if the wine is not yet in the DB.
  */
-registerWineInDB(WineName, Entry) :-
+registerWineInDB(WineName, WineDescription) :-
     constant(db_wine, File),
     attach_wine_db(File),
-    createAtom(Entry, WineDescription),
-    \+ get_wine(wineDescription(WineName, [WineDescription])),
+    %createAtom(Entry, WineDescription),
+    \+ get_wine(wineDescription(WineName, WineDescription)),
     !,
-    set_wine(wineDescription(WineName, [WineDescription])),
+    set_wine(wineDescription(WineName, WineDescription)),
     detach_wine_db.
 
 /* registerRatingInDB(+Rating, +Entry)
  *  Register the wine entry if the wine is not yet in the DB.
  */
-registerRatingInDB(Rating, Entry) :-
+registerRatingInDB(Rating, RatingEntry) :-
     constant(db_rating, File),
     attach_rating_db(File),
-    createAtom(Entry, RatingDescription),
-    set_rating(rating(Rating, [RatingDescription])),
+    %createAtom(Entry, RatingDescription),
+    set_rating(rating(Rating, RatingEntry)),
     detach_rating_db.
 
 /* createAtom(+List, ?Output).

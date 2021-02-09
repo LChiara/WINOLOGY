@@ -163,9 +163,9 @@ showMenu(Menu):-
  * info and add it to the DB calling the related register function
  */
 registerAction :-
-    promptRegisterDialog(Rating, RatingEntryValues, WineName, WineEntryValues),
-    createEntries(Rating, RatingEntryValues, WineName, WineEntryValues),
-    register(Rating, RatingEntryValues, WineName, WineEntryValues).
+    promptRegisterDialog(Rating, RatingEntryValues, WineName, WineDescription),
+    %createEntries(Rating, RatingEntryValues, WineName, WineEntryValues),
+    register(Rating, RatingEntryValues, WineName, WineDescription).
 
 /* classifyAction.
  * prompt the classify dialog where the user can enter all the necessary
@@ -238,17 +238,17 @@ promptRegisterDialog(Rating, RatingEntryValues, Name, WineEntryValues):-
     get(@entry_color, selection, Color),
     get(@entry_effervescence, selection, Effervescence),
     get(@entry_sweetness, selection, Sweetness),
-    RatingEntryValues = [
-                (   name, Name),
-                (   time, Time),
-                (   food, Food),
-                (   person, Person)],
-    WineEntryValues = [
-                (   aroma, Aroma),
-                (   body, Body),
-                (   color, Color),
-                (   effervescence, Effervescence),
-                (   sweetness, Sweetness)],
+    RatingEntryValues = [name=Name, time=Time, food=Food, person=Person],
+                %(   name, Name),
+                %(   time, Time),
+                %(   food, Food),
+                %(   person, Person)],
+    WineEntryValues = [aroma=Aroma, body=Body, color=Color, effervescence=Effervescence, sweetness=Sweetness],
+                %(   aroma, Aroma),
+                %(   body, Body),
+                %(   color, Color),
+                %(   effervescence, Effervescence),
+                %(   sweetness, Sweetness)],
     writeln(RatingEntryValues),
     writeln('\n'),
     writeln(WineEntryValues).
