@@ -53,17 +53,86 @@ attach_rating_db(File) :-
 detach_rating_db :-
         db_detach.
 
-get_rating(rating(rating_0, [time=breakfast, food=cereals,   person=chiara,  wine=moscatoDAsti])).
-get_rating(rating(rating_0, [time=breakfast, food=cereals,   person=chiara,  wine=proseccoTerreNardinVenti2])).
-get_rating(rating(rating_1, [time=breakfast, food=fish,      person=chiara,  wine=moscatoDAsti])).
-get_rating(rating(rating_2, [time=lunch,     food=fish,      person=chiara,  wine=primitivoDiManduria])).
-get_rating(rating(rating_3, [time=aperitivo, food=aperitivo, person=chiara,  wine=primitivoDiManduria])).
-get_rating(rating(rating_3, [time=aperitivo, food=aperitivo, person=chiara,  wine=vernacciaSerrapetrona])).
-get_rating(rating(rating_4, [time=dinner,    food=dinner,    person=chiara,  wine=primitivoDiManduria])).
-get_rating(rating(rating_5, [time=lunch,     food=fish,      person=chiara,  wine=luganaSanti])).
-get_rating(rating(rating_5, [time=dinner,    food=dessert,   person=chiara,  wine=vernacciaSerrapetrona])).
-get_rating(rating(rating_5, [time=lunch,     food=meat,      person=chiara,  wine=fragolinoTerreDelSole])).
-get_rating(rating(rating_5, [time=dinner,    food=pizza,     person=chiara,  wine=fragolinoTerreDelSole])).
+get_rating(rating(rating_2,[time=lunch,food=meat,person=ambra,wine=fragolinoTerreDelSole])).
+get_rating(rating(rating_2,[time=lunch,food=dessert,person=ambra,wine=fragolinoTerreDelSole])).
+get_rating(rating(rating_2,[time=dinner,food=dessert,person=ambra,wine=fragolinoTerreDelSole])).
+get_rating(rating(rating_2,[time=lunch,food=fish,person=ambra,wine=primitivoRosato])).
+get_rating(rating(rating_2,[time=lunch,food=vegetarian,person=ambra,wine=primitivoRosato])).
+get_rating(rating(rating_2,[time=dinner,food=dessert,person=ambra,wine=primitivoRosato])).
+get_rating(rating(rating_5,[time=lunch,food=dessert,person=chiara,wine=fragolinoTerreDelSole])).
+get_rating(rating(rating_4,[time=lunch,food=dessert,person=claudia,wine=fragolinoTerreDelSole])).
+get_rating(rating(rating_5,[time=lunch,food=dessert,person=chiara,wine=fragolinoTerreDelSole])).
+get_rating(rating(rating_4,[time=lunch,food=dessert,person=claudia,wine=fragolinoTerreDelSole])).
+get_rating(rating(rating_5,[time=dinner,food=dessert,person=chiara,wine=primitivoRosato])).
+get_rating(rating(rating_4,[time=dinner,food=dessert,person=claudia,wine=primitivoRosato])).
+get_rating(rating(rating_0,[time=breakfast,food=dessert,person=ambra,wine=proseccoTerreNardinVenti2])).
+get_rating(rating(rating_1,[time=breakfast,food=dessert,person=chiara,wine=proseccoTerreNardinVenti2])).
+get_rating(rating(rating_0,[time=breakfast,food=dessert,person=claudia,wine=proseccoTerreNardinVenti2])).
+get_rating(rating(rating_0,[time=breakfast,food=dessert,person=ambra,wine=moscatoDAsti])).
+get_rating(rating(rating_1,[time=breakfast,food=dessert,person=chiara,wine=moscatoDAsti])).
+get_rating(rating(rating_0,[time=breakfast,food=dessert,person=claudia,wine=moscatoDAsti])).
+get_rating(rating(rating_3,[time=lunch,food=pizza,person=ambra,wine=primitivoDiSalento])).
+get_rating(rating(rating_5,[time=lunch,food=meat,person=ambra,wine=primitivoDiSalento])).
+get_rating(rating(rating_3,[time=dinner,food=pizza,person=ambra,wine=primitivoDiSalento])).
+get_rating(rating(rating_5,[time=dinner,food=meat,person=ambra,wine=primitivoDiSalento])).
+get_rating(rating(rating_3,[time=lunch,food=pizza,person=ambra,wine=candrieu])).
+get_rating(rating(rating_5,[time=lunch,food=meat,person=ambra,wine=candrieu])).
+get_rating(rating(rating_3,[time=dinner,food=pizza,person=ambra,wine=candrieu])).
+get_rating(rating(rating_5,[time=dinner,food=meat,person=ambra,wine=candrieu])).
+get_rating(rating(rating_4,[time=dinner,food=meat,person=ambra,wine=rocciaRossoRosato])).
+get_rating(rating(rating_4,[time=aperitivo,food=aperitivo,person=ambra,wine=verdicchioDiMatelicaGagliardi])).
+get_rating(rating(rating_4,[time=dinner,food=meat,person=ambra,wine=verdicchioDiMatelicaGagliardi])).
+get_rating(rating(rating_4,[time=dinner,food=meat,person=ambra,wine=chardonnayMineral])).
+get_rating(rating(rating_5,[time=aperitivo,food=aperitivo,person=chiara,wine=verdicchioDiMatelicaGagliardi])).
+get_rating(rating(rating_5,[time=lunch,food=vegetarian,person=chiara,wine=verdicchioDiMatelicaGagliardi])).
+get_rating(rating(rating_5,[time=lunch,food=fish,person=chiara,wine=verdicchioDiMatelicaGagliardi])).
+get_rating(rating(rating_5,[time=aperitivo,food=aperitivo,person=chiara,wine=grecoDiTufo])).
+get_rating(rating(rating_5,[time=aperitivo,food=aperitivo,person=chiara,wine=chardonnayMineral])).
+get_rating(rating(rating_4,[time=aperitivo,food=aperitivo,person=chiara,wine=rocciaRossoRosato])).
+get_rating(rating(rating_3,[time=aperitivo,food=aperitivo,person=claudia,wine=grecoDiTufo])).
+get_rating(rating(rating_3,[time=aperitivo,food=aperitivo,person=claudia,wine=chardonnayMineral])).
+get_rating(rating(rating_3,[time=aperitivo,food=aperitivo,person=claudia,wine=rocciaRossoRosato])).
+get_rating(rating(rating_3,[time=aperitivo,food=aperitivo,person=claudia,wine=verdicchioDiMatelicaGagliardi])).
+get_rating(rating(rating_4,[time=aperitivo,food=aperitivo,person=claudia,wine=doppioPassoPrimitivoRosato])).
+get_rating(rating(rating_4,[time=aperitivo,food=aperitivo,person=claudia,wine=verdicchioDiMatelica])).
+get_rating(rating(rating_1,[time=lunch,food=fish,person=ambra,wine=luganaSanti])).
+get_rating(rating(rating_4,[time=lunch,food=fish,person=chiara,wine=luganaSanti])).
+get_rating(rating(rating_2,[time=lunch,food=fish,person=claudia,wine=luganaSanti])).
+get_rating(rating(rating_1,[time=dinner,food=fish,person=ambra,wine=luganaSanti])).
+get_rating(rating(rating_4,[time=dinner,food=fish,person=chiara,wine=luganaSanti])).
+get_rating(rating(rating_2,[time=dinner,food=fish,person=claudia,wine=luganaSanti])).
+get_rating(rating(rating_1,[time=lunch,food=fish,person=ambra,wine=luganaAltaCorte])).
+get_rating(rating(rating_4,[time=lunch,food=fish,person=chiara,wine=luganaAltaCorte])).
+get_rating(rating(rating_2,[time=lunch,food=fish,person=claudia,wine=luganaAltaCorte])).
+get_rating(rating(rating_1,[time=dinner,food=fish,person=ambra,wine=luganaAltaCorte])).
+get_rating(rating(rating_4,[time=dinner,food=fish,person=chiara,wine=luganaAltaCorte])).
+get_rating(rating(rating_2,[time=dinner,food=fish,person=claudia,wine=luganaAltaCorte])).
+get_rating(rating(rating_1,[time=dinner,food=meat,person=ambra,wine=luganaAltaCorte])).
+get_rating(rating(rating_2,[time=dinner,food=meat,person=chiara,wine=luganaAltaCorte])).
+get_rating(rating(rating_2,[time=dinner,food=meat,person=claudia,wine=luganaAltaCorte])).
+get_rating(rating(rating_2,[time=aperitivo,food=aperitivo,person=chiara,wine=primitivoDiManduria])).
+get_rating(rating(rating_2,[time=aperitivo,food=aperitivo,person=claudia,wine=primitivoDiManduria])).
+get_rating(rating(rating_3,[time=dinner,food=meat,person=chiara,wine=primitivoDiManduria])).
+get_rating(rating(rating_5,[time=dinner,food=meat,person=claudia,wine=primitivoDiManduria])).
+get_rating(rating(rating_2,[time=aperitivo,food=aperitivo,person=chiara,wine=primitivoDiSalento])).
+get_rating(rating(rating_2,[time=aperitivo,food=aperitivo,person=claudia,wine=primitivoDiSalento])).
+get_rating(rating(rating_3,[time=dinner,food=meat,person=chiara,wine=candrieu])).
+get_rating(rating(rating_5,[time=dinner,food=meat,person=claudia,wine=candrieu])).
+get_rating(rating(rating_3,[time=lunch,food=pasta,person=chiara,wine=rocciaRossoRosato])).
+get_rating(rating(rating_3,[time=lunch,food=pasta,person=chiara,wine=grecoDiTufo])).
+get_rating(rating(rating_3,[time=lunch,food=pasta,person=chiara,wine=verdicchioDiMatelicaGagliardi])).
+get_rating(rating(rating_0,[time=lunch,food=pasta,person=chiara,wine=weisserBurgunder])).
+get_rating(rating(rating_4,[time=lunch,food=pasta,person=claudia,wine=grecoDiTufo])).
+get_rating(rating(rating_4,[time=lunch,food=vegetarian,person=ambra,wine=luganaSartori])).
+get_rating(rating(rating_5,[time=lunch,food=vegetarian,person=chiara,wine=luganaSartori])).
+get_rating(rating(rating_5,[time=lunch,food=vegetarian,person=claudia,wine=luganaSartori])).
+get_rating(rating(rating_4,[time=lunch,food=vegetarian,person=chiara,wine=verdicchioDiMatelica])).
+get_rating(rating(rating_4,[time=lunch,food=vegetarian,person=claudia,wine=verdicchioDiMatelica])).
+get_rating(rating(rating_2,[time=lunch,food=pasta,person=claudia,wine=primitivoDiManduria])).
+get_rating(rating(rating_4,[time=dinner,food=dessert,person=ambra,wine=vernacciaSerrapetrona])).
+get_rating(rating(rating_5,[time=dinner,food=dessert,person=chiara,wine=vernacciaSerrapetrona])).
+get_rating(rating(rating_5,[time=dinner,food=dessert,person=claudia,wine=vernacciaSerrapetrona])).
+
 
 get_rating(Fact) :-
         rating_fact(Fact).

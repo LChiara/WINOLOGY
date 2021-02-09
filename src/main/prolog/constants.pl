@@ -12,4 +12,4 @@
 constant(db_rating, 'rating_db.pl').
 constant(db_wine, 'wine_db.pl').
 
-constant(empty_value, "--").
+constant(empty_value, '--').

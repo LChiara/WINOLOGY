@@ -44,6 +44,8 @@ free_main:-
     free(@register_label),
     free(@check_label),
     free(@search_wine),
+    free(@ok_button),
+    free(@ok),
     free(@cancel_button).
 
 free_dialogs :-
@@ -162,8 +164,8 @@ showMenu(Menu):-
  */
 registerAction :-
     promptRegisterDialog(Rating, RatingEntryValues, WineName, WineEntryValues),
-    print_register_commando(Rating, RatingEntryValues, WineName, WineEntryValues).
-    %register(Rating, RatingEntryValues, WineName, WineEntryValues).
+    createEntries(Rating, RatingEntryValues, WineName, WineEntryValues),
+    register(Rating, RatingEntryValues, WineName, WineEntryValues).
 
 /* classifyAction.
  * prompt the classify dialog where the user can enter all the necessary
@@ -173,10 +175,11 @@ classifyAction :-
     promptClassifyDialog(EntryValues),
     !,
     startLearningProcess,
-    print_classify_commando(EntryValues),
+    createRequest(EntryValues, SituationDescription),
     writeln("Result ==> "),
-    classify([time="breakfast", food="cereals"], RatingClass),
-    writeln(RatingClass).
+    classify(SituationDescription, RatingClass),
+    writeln(RatingClass),
+    promptRatingResult(SituationDescription, RatingClass).
 
 /* -> END Action section */
 
@@ -239,8 +242,7 @@ promptRegisterDialog(Rating, RatingEntryValues, Name, WineEntryValues):-
                 (   name, Name),
                 (   time, Time),
                 (   food, Food),
-                (   person, Person),
-                (   rating, Rating)],
+                (   person, Person)],
     WineEntryValues = [
                 (   aroma, Aroma),
                 (   body, Body),
@@ -309,10 +311,16 @@ promptClassifyDialog(RequestList) :-
                 (   body, Body),
                 (   color, Color),
                 (   effervescence, Effervescence),
-                (   sweetness, Sweetness)],
-    writeln('This is the request:'),
-    writeln(RequestList),
-    writeln('\n').
+                (   sweetness, Sweetness)].
+
+promptRatingResult(Request, Result) :-
+    new(D, dialog('Rating')),
+    atom_concat('Rating: ', Result, RatingResult),
+    send_list(D, append,
+              [new(_, text(Request, center, normal)),
+              new(_, text(RatingResult, center, normal)),
+              new(@ok, button(ok, message(D, destroy)))]),
+    send(D, open_centered).
 
 /* -> END Dialog section */
 
@@ -341,6 +349,8 @@ allowEmpty(DialogEntry) :-
  */
 searchWineInDB(WineName, AromaEntry, BodyEntry, ColorEntry, EffervescenceEntry, SweetnessEntry) :-
     get_wine(wineDescription(WineName, [aroma=Aroma, body=Body, color=Color, effervescence=Effervescence, sweetness=Sweetness])),
+    write('Searched wine => '),
+    writeln(WineName),
     write('aroma='),
     writeln(Aroma),
     write('body='),
@@ -360,17 +370,16 @@ searchWineInDB(_, _, _, _, _, _) :- !.
 
 /* -> End Utility function section */
 
-% DEBUG_MODUS
-print_register_commando(_Rating, RatingEntryValues, _WineName, WineEntryValues):-
+createEntries(_Rating, RatingEntryValues, _WineName, WineEntryValues):-
     createAtom(RatingEntryValues, RegisterEntryAtom),
     writeln(RegisterEntryAtom),
     createAtom(WineEntryValues, WineEntryAtom),
     writeln(WineEntryAtom).
 
-% DEBUG MODUS
-print_classify_commando(EntryValues) :-
-    createAtom(EntryValues, EntryAtom),
-    writeln(EntryAtom).
+createRequest(EntryValues, Request) :-
+    createAtom(EntryValues, Request),
+    write('User Request: '),
+    writeln(Request).
 
 
 

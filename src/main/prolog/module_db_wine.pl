@@ -54,13 +54,26 @@ attach_wine_db(File) :-
 detach_wine_db :-
         db_detach.
 
-get_wine(wineDescription(fragolinoTerreDelSole,     [aroma=fruity,   body=light_bodied,  color=red,    effervescence=no,  sweetness=sweet])).
-get_wine(wineDescription(proseccoTerreNardinVenti2, [aroma=aromatic, body=light_bodied,  color=yellow, effervescence=yes, sweetness=dry])).
-get_wine(wineDescription(moscatoDAsti,              [aroma=aromatic, body=light_bodied,  color=yellow, effervescence=yes, sweetness=off_dry])).
-get_wine(wineDescription(verdicchioDiMatelica,      [aroma=fruity,   body=medium_bodied, color=yellow, effervescence=no,  sweetness=off_dry])). % antipasti ok, pesce, formaggi ok -> carne no.
-get_wine(wineDescription(vernacciaSerrapetrona,     [aroma=aromatic, body=medium_bodied, color=red,    effervescence=no,  sweetness=sweet])).
-get_wine(wineDescription(primitivoDiManduria,       [aroma=aromatic, body=full_bodied,   color=red,    effervescence=no,  sweetness=off_dry])).
-get_wine(wineDescription(luganaSanti,               [aroma=floreal,  body=light_bodies,  color=yellow, effervescence=yes, sweetnees=sweet])).
+get_wine(wineDescription(fragolinoTerreDelSole,     [aroma=fruity,   body=light_bodied, color=red,    effervescence=no,  sweetness=sweet])).
+get_wine(wineDescription(proseccoTerreNardinVenti2, [aroma=aromatic, body=light_bodied, color=yellow, effervescence=yes, sweetness=dry])).
+get_wine(wineDescription(moscatoDAsti,              [aroma=aromatic, body=light_bodied, color=yellow, effervescence=yes, sweetness=off_dry])).
+get_wine(wineDescription(verdicchioDiMatelica,      [aroma=fruity,   body=medium_bodied, color=yellow, effervescence=no, sweetness=off_dry])).
+get_wine(wineDescription(luganaSanti,               [aroma=floreal,  body=light_bodied, color=yellow, effervescence=yes, sweetness=sweet])).
+get_wine(wineDescription(vernacciaSerrapetrona,     [aroma=aromatic, body=medium_bodied, color=red, effervescence=no, sweetness=sweet])).
+get_wine(wineDescription(primitivoDiManduria,       [aroma=aromatic, body=full_bodied, color=red, effervescence=no, sweetness=off_dry])).
+get_wine(wineDescription(primitivoDiSalento,        [aroma=mineral, body=full_bodied, color=red, effervescence=no, sweetness=off_dry])).
+get_wine(wineDescription(primitivoRosato,           [aroma=fruity, body=light_bodied, color=rose, effervescence=no, sweetness=sweet])).
+get_wine(wineDescription(rocciaRossoRosato,         [aroma=mineral, body=light_bodied, color=rose, effervescence=no, sweetness=dry])).
+get_wine(wineDescription(doppioPassoPrimitivoRosato,[aroma=fruity, body=light_bodied, color=rose, effervescence=no, sweetness=dry])).
+get_wine(wineDescription(luganaSartori,             [aroma=fruity, body=light_bodied, color=yellow, effervescence=no, sweetness=off_dry])).
+get_wine(wineDescription(luganaIFrati,              [aroma=fruity, body=medium_bodied, color=yellow, effervescence=no, sweetness=dry])).
+get_wine(wineDescription(luganaAltaCorte,           [aroma=floreal, body=light_bodied, color=yellow, effervescence=no, sweetness=off_dry])).
+get_wine(wineDescription(weisserBurgunder,          [aroma=aromatic, body=medium_bodied, color=yellow, effervescence=yes, sweetness=off_dry])).
+get_wine(wineDescription(sonnenseite,               [aroma=fruity, body=light_bodied, color=yellow, effervescence=yes, sweetness=dry])).
+get_wine(wineDescription(chardonnayMineral,         [aroma=mineral, body=light_bodied, color=yellow, effervescence=yes, sweetness=dry])).
+get_wine(wineDescription(grecoDiTufo,               [aroma=mineral, body=light_bodied, color=yellow, effervescence=no,  sweetness=off_dry])).
+get_wine(wineDescription(verdicchioDiMatelicaGagliardi,        [aroma=mineral, body=light_bodied, color=yellow, effervescence=no, sweetness=dry])).
+get_wine(wineDescription(candrieu,                  [aroma=mineral,body=full_bodied,color=yellow,effervescence=no,sweetness=dry])).
 
 get_wine(Fact) :-
         wine_fact(Fact).

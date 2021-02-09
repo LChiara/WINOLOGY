@@ -33,7 +33,8 @@ registerWineInDB(WineName, Entry) :-
     createAtom(Entry, WineDescription),
     \+ get_wine(wineDescription(WineName, [WineDescription])),
     !,
-    set_wine(wineDescription(WineName, [WineDescription])).
+    set_wine(wineDescription(WineName, [WineDescription])),
+    detach_wine_db.
 
 /* registerRatingInDB(+Rating, +Entry)
  *  Register the wine entry if the wine is not yet in the DB.
@@ -42,7 +43,8 @@ registerRatingInDB(Rating, Entry) :-
     constant(db_rating, File),
     attach_rating_db(File),
     createAtom(Entry, RatingDescription),
-    set_rating(rating(Rating, [RatingDescription])).
+    set_rating(rating(Rating, [RatingDescription])),
+    detach_rating_db.
 
 /* createAtom(+List, ?Output).
  *  Create an atom, joining a list of tuple values (key, value) and
