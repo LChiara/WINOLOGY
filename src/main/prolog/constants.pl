@@ -9,7 +9,7 @@
 
 */
 
-constant(db_rating, 'rating_db.pl').
-constant(db_wine, 'wine_db.pl').
+constant(db_rating, 'winology_rating_db.pl').
+constant(db_wine, 'winology_wine_db.pl').
 
 constant(empty_value, '--').
