@@ -10,6 +10,29 @@ Clone the repository or download the .zip
 git clone https://github.com/LChiara/WINOLOGY
 ```
 
+## Usage (Docker)
+Please note, XPCE is not supported by the swipl docker image: https://hub.docker.com/_/swipl/.
+In order to start a Docker container, that starts the learning process.
+```
+docker run -t winology 
+```
+To start a classification
+```
+? - classify([time=dinner, body=medium_bodied, effervescence=no, aroma=aromatic, food=meat], X).
+X = rating_4 .
+```
+To register a new entry
+```
+? - register(rating_2, [time=lunch, food=fish, person=ambra, wine=barolo], barolo, [aroma=mineral, body=light_bodied, color=red, effervescence=no, sweetness=off_dry]).
+```
+To register just a wine
+```
+? - registerWineInDB(barolo, [aroma=mineral, body=light_bodied, color=red, effervescence=no, sweetness=off_dry]).
+```
+To register just a entry
+```
+? - registerRatingInDB(rating_2, [time=lunch, food=fish, person=ambra, wine=barolo]).
+```
 ## Usage (CommandLine)
 
 Start swipl and load `classify.pl`
@@ -24,7 +47,7 @@ X = rating_0
 
 Start swipl and load `winology.pl` to open the GUI
 ```
-?- consult('D:/WINOLOGY/src/main/prolog/winology.pl').
+?- consult('D:/WINOLOGY/src/main/prolog/GUI.pl').
 ```
 
 ## Project structure
@@ -32,6 +55,7 @@ Start swipl and load `winology.pl` to open the GUI
     ..
     ├── docs                    # Documentation files
     ├── src                     # Source files
+    ├── dockerfile              # Configuration to define the Docker image
     └── README.md
 
 ### Source files
@@ -53,7 +77,7 @@ Start swipl and load `winology.pl` to open the GUI
     │       │   ├── module_db_wine.pl   # module for wine DB
     │       │   ├── module_db_wine.plt  # unit tests for module_db_wine.pl
     │       │   ├── register.plt        # script to register a new wine in the DB or a new rating
-    │       │   └── winology.pl         # main script to start the GUI
+    │       │   └── winology.pl         # main script to start the learning process and load all the pl files.
     │       └── resources
     └── ...
 
@@ -85,7 +109,7 @@ wineDescription(<wine>, [aroma=<aromaValue>, body=<bodyValue>, color=<colorValue
 * `effervescence`: yes; no.
 * `sweetness`: sweet; dry; off_dry.
 
-## HowTo: Add a new Wine and Rating
+## HowTo: Add a use the module_db_* databases
 
 The modules module_db_rating and module_db_wine allows the user to populate the DB:
 
@@ -104,13 +128,3 @@ true.
 ?- set_wine(wineDescription(barolo, [aroma=mineral, body=light_bodied, color=red, effervescence=no, sweetness=off_dry])).
 true.
 ```
-
-The function `register(+Rating, +RatingEntry, +WineName, +WineEntry)` adds a new rating and a new wine entry in the respective DBs.
-```
-register('rating_2', 
-         '[time=lunch, food=fish, person=ambra, wine=barolo]', 
-         'barolo', 
-         '[aroma=mineral, body=light_bodied, color=red, effervescence=no, sweetness=off_dry]'
-         ).
-```
-

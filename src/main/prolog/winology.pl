@@ -2,6 +2,8 @@
 %    WINOLOGY   %
 % ------------- %
 
-:- ensure_loaded(gui).
+:- ensure_loaded(characteristics).
+:- ensure_loaded(classify).
+:- ensure_loaded(register).
 
-:- startGUI.
+:- startLearningProcess.
