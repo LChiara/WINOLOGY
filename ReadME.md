@@ -11,6 +11,9 @@ git clone https://github.com/LChiara/WINOLOGY
 ```
 
 ## Usage (Docker)
+```
+docker pull swipl
+```
 Please note, XPCE is not supported by the swipl docker image: https://hub.docker.com/_/swipl/.
 In order to start a Docker container, that starts the learning process.
 ```
@@ -49,6 +52,35 @@ Start swipl and load `winology.pl` to open the GUI
 ```
 ?- consult('D:/WINOLOGY/src/main/prolog/GUI.pl').
 ```
+
+The following window will appear:
+
+![window](docs/img/root.png)
+
+The user can now either register add a new entry (*register* button) or classify a wine (*classify* button).
+Both buttons open a new popup to insert the desired values:
+
+![register](docs/img/register.png)
+
+Each combo box let the user choose one of the possible attributes to describe a new entry (See [How to describe a Wine](#how-to-describe-a-wine)).
+
+If a wine is already present in the DB, all the data can be retrieved using the button *Search Button*. The result of the DB query is printed on the Terminal, as well.
+
+![search_wine](docs/img/search_wine.png)
+
+The user can decide to confirm his new entry through the *OK Button* or to come back to the main window, discarding all the changes, by clicking the *Cancel Button*.
+
+![register_wine](docs/img/register_wine.png)
+
+To classify a not yet tasted wine or an already known wine with different food, you can use the *Classify Button*. A new popup will be prompt, similar to the one for the registration, but in this case, the user is allowed to leave some field empty. The *Search Button* is available here too.
+
+![classify](docs/img/classify.png)
+
+The *Ok Button* triggers the learning process and then a popup with the resulting rating will be displayed. The result of the learnign process and the classification is printed out in the terminal as well.
+
+![classify_result](docs/img/classify_result.png)
+
+
 
 ## Project structure
 

@@ -19,8 +19,6 @@
 :- ensure_loaded(classify).
 :- ensure_loaded(register).
 
-:-startGUI.
-
 /* Define resources path, where image are to be found */
 :- pce_image_directory('../resources/img').
 
