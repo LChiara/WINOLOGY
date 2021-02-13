@@ -238,18 +238,10 @@ promptRegisterDialog(Rating, RatingEntryValues, Name, WineEntryValues):-
     get(@entry_effervescence, selection, Effervescence),
     get(@entry_sweetness, selection, Sweetness),
     RatingEntryValues = [name=Name, time=Time, food=Food, person=Person],
-                %(   name, Name),
-                %(   time, Time),
-                %(   food, Food),
-                %(   person, Person)],
     WineEntryValues = [aroma=Aroma, body=Body, color=Color, effervescence=Effervescence, sweetness=Sweetness],
-                %(   aroma, Aroma),
-                %(   body, Body),
-                %(   color, Color),
-                %(   effervescence, Effervescence),
-                %(   sweetness, Sweetness)],
+    write('Rating: => '),
     writeln(RatingEntryValues),
-    writeln('\n'),
+    write('Wine: => '),
     writeln(WineEntryValues).
 
 /* promptClassifyDialog(?RequestList)
@@ -348,8 +340,9 @@ allowEmpty(DialogEntry) :-
  */
 searchWineInDB(WineName, AromaEntry, BodyEntry, ColorEntry, EffervescenceEntry, SweetnessEntry) :-
     get_wine(wineDescription(WineName, [aroma=Aroma, body=Body, color=Color, effervescence=Effervescence, sweetness=Sweetness])),
-    write('Searched wine => '),
+    write('Searched wine: => '),
     writeln(WineName),
+    writeln('Result: =>'),
     write('aroma='),
     writeln(Aroma),
     write('body='),
