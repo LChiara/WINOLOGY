@@ -15,42 +15,44 @@ git clone https://github.com/LChiara/WINOLOGY
 docker pull swipl
 ```
 Please note, XPCE is not supported by the swipl docker image: https://hub.docker.com/_/swipl/.
-In order to start a Docker container, that starts the learning process.
+The shell script *docker_run_gui.sh* allowes to start the GUI inside the Docker Container:
+
 ```
-docker run -t winology 
+sh docker_run_gui.sh
 ```
+Please, refer to [Usage (GUI)](#usage-gui), for a description of the Winology interface.
+For a more technical description about how to start a GUI in a Docker Container, have a look [here](https://nelkinda.com/blog/xeyes-in-docker/)
+
+## Usage (CommandLine)
+
+Start swipl and load `winology.pl`, that will trigger the learning process. Afterwards the user can register a new entry or start a classification.
+
+```?- consult('D:/WINOLOGY/src/main/prolog/winology.pl').
+```
+
 To start a classification
 ```
 ? - classify([time=dinner, body=medium_bodied, effervescence=no, aroma=aromatic, food=meat], X).
 X = rating_4 .
 ```
-To register a new entry
+To register a new entry (rating and wine)
 ```
 ? - register(rating_2, [time=lunch, food=fish, person=ambra, wine=barolo], barolo, [aroma=mineral, body=light_bodied, color=red, effervescence=no, sweetness=off_dry]).
 ```
-To register just a wine
+To register just a wine:
 ```
 ? - registerWineInDB(barolo, [aroma=mineral, body=light_bodied, color=red, effervescence=no, sweetness=off_dry]).
 ```
-To register just a entry
+To register just a rating:
 ```
 ? - registerRatingInDB(rating_2, [time=lunch, food=fish, person=ambra, wine=barolo]).
-```
-## Usage (CommandLine)
-
-Start swipl and load `classify.pl`
-```?- consult('D:/WINOLOGY/src/main/prolog/classify.pl').
-?- startLearningProcess. %learn all the rating classes.
-?- classify([time=breakfast, food=dessert], X).
-
-X = rating_0
 ```
 
 ## Usage (GUI)
 
-Start swipl and load `winology.pl` to open the GUI
+Start swipl and load `winologyGUI.pl` to open the GUI
 ```
-?- consult('D:/WINOLOGY/src/main/prolog/GUI.pl').
+?- consult('D:/WINOLOGY/src/main/prolog/winologyGUI.pl').
 ```
 
 The following window will appear:
@@ -88,6 +90,7 @@ The *Ok Button* triggers the learning process and then a popup with the resultin
     ├── docs                    # Documentation files
     ├── src                     # Source files
     ├── dockerfile              # Configuration to define the Docker image
+    ├── docker_run_gui.sh       # Small bash script to run the Winology GUI inside the Docker container
     └── README.md
 
 ### Source files
@@ -103,7 +106,7 @@ The *Ok Button* triggers the learning process and then a popup with the resultin
     │       │   ├── classify.pl         # script to for learn and classification
     │       │   ├── classify.plt        # unit tests for classify.pl
     │       │   ├── constants.pl        # useful constants, such as DB file names
-    │       │   ├── GUI.pl              # main script for the GUI
+    │       │   ├── gui.pl              # main script for the GUI
     │       │   ├── module_db_rating.pl # module for rating DB
     │       │   ├── module_db_rating.plt # unit tests for module_db_rating.pl
     │       │   ├── module_db_wine.pl   # module for wine DB

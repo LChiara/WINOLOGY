@@ -58,6 +58,7 @@ free_dialogs :-
     free(@entry_effervescence),
     free(@entry_color),
     free(@entry_sweetness),
+    free(@ok),
     free(@ok_button),
     free(@cancel_button),
     free(@search_wine),
@@ -172,13 +173,15 @@ registerAction :-
  */
 classifyAction :-
     promptClassifyDialog(EntryValues),
+    writeln('ABCD'),
     !,
     startLearningProcess,
-    createRequest(EntryValues, SituationDescription),
+    getClassificationRequest(EntryValues, SituationDescription),
     writeln("Result ==> "),
     classify(SituationDescription, RatingClass),
     writeln(RatingClass),
-    promptRatingResult(SituationDescription, RatingClass).
+    createAtom(SituationDescription, SituationDescriptionAtom),
+    promptRatingResult(SituationDescriptionAtom, RatingClass).
 
 /* -> END Action section */
 
@@ -294,15 +297,15 @@ promptClassifyDialog(RequestList) :-
     get(@entry_color, selection, Color),
     get(@entry_effervescence, selection, Effervescence),
     get(@entry_sweetness, selection, Sweetness),
-
-    RequestList = [ (   time, Time),
-                (   food, Food),
-                (   person, Person),
-                (   aroma, Aroma),
-                (   body, Body),
-                (   color, Color),
-                (   effervescence, Effervescence),
-                (   sweetness, Sweetness)].
+    RequestList = [time=Time,
+                   food=Food,
+                   person=Person,
+                   aroma=Aroma,
+                   body=Body,
+                   color=Color,
+                   effervescence=Effervescence,
+                   sweetness=Sweetness],
+    writeln('DCF').
 
 promptRatingResult(Request, Result) :-
     new(D, dialog('Rating')),
@@ -362,26 +365,36 @@ searchWineInDB(_, _, _, _, _, _) :- !.
 
 /* -> End Utility function section */
 
-createEntries(_Rating, RatingEntryValues, _WineName, WineEntryValues):-
-    createAtom(RatingEntryValues, RegisterEntryAtom),
-    writeln(RegisterEntryAtom),
-    createAtom(WineEntryValues, WineEntryAtom),
-    writeln(WineEntryAtom).
+/* getClassificationRequest(+List, +NewList)
+ * Remove from the list all the entries with empty value as value.
+ */
+getClassificationRequest([], []).
 
-createRequest(EntryValues, Request) :-
-    createAtom(EntryValues, Request),
-    write('User Request: '),
-    writeln(Request).
+getClassificationRequest([_Key=Value|T], List) :-
+    constant(empty_value, Value),
+    getClassificationRequest(T, List),
+    !.
 
-
-
-
+getClassificationRequest([Key=Value|T], [Key=Value|List]) :-
+    getClassificationRequest(T, List).
 
 
+/* createAtom(+List, ?Output).
+ *  Create an atom, joining a list of tuple values (key, value) and
+ *  ignoring tuples with value=emptyValue
+ */
+createAtom([Key=Value|T], OutputAtom) :- %Start: OutputAtom is still empty
+    concatenate([Key, '=', Value], ActualAtom),
+    createAtom(T, ActualAtom, OutputAtom).
+createAtom([], ActualAtom, ActualAtom) :- !.
+createAtom([Key=Value|T], ActualAtom, Atom) :-
+    createAtom(T, ActualAtom, Tmp),
+    concatenate([Tmp, ', ', Key, '=', Value], Atom).
 
-
-
-
+concatenate(StringList, StringResult) :-
+    maplist(atom_chars, StringList, Lists),
+    append(Lists, List),
+    atom_chars(StringResult, List).
 
 
 

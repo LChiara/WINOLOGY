@@ -30,7 +30,6 @@ register(Rating, RatingEntry, WineName, WineEntry) :-
 registerWineInDB(WineName, WineDescription) :-
     constant(db_wine, File),
     attach_wine_db(File),
-    %createAtom(Entry, WineDescription),
     \+ get_wine(wineDescription(WineName, WineDescription)),
     !,
     set_wine(wineDescription(WineName, WineDescription)),
@@ -42,37 +41,10 @@ registerWineInDB(WineName, WineDescription) :-
 registerRatingInDB(Rating, RatingEntry) :-
     constant(db_rating, File),
     attach_rating_db(File),
-    %createAtom(Entry, RatingDescription),
     set_rating(rating(Rating, RatingEntry)),
     detach_rating_db.
 
-/* createAtom(+List, ?Output).
- *  Create an atom, joining a list of tuple values (key, value) and
- *  ignoring tuples with value=emptyValue
- */
-createAtom([(_, Value)|T], OutputAtom) :- %Start: OutputAtom is still empty
-    constant(empty_value, Value),
-    createAtom(T, OutputAtom).
-
-createAtom([(Key, Value)|T], OutputAtom) :- %Start: OutputAtom is still empty
-    concatenate([Key, '=', Value], ActualAtom),
-    createAtom(T, ActualAtom, OutputAtom).
-
-createAtom([], ActualAtom, ActualAtom) :- !.
-
-createAtom([(_, Value)|T], ActualAtom, Atom) :- %Skip entries empty value.
-    constant(empty_value, Value),
-    createAtom(T, ActualAtom, Atom).
-
-createAtom([(Key, Value)|T], ActualAtom, Atom) :-
-    createAtom(T, ActualAtom, Tmp),
-    concatenate([Tmp, ', ', Key, '=', Value], Atom).
 
 
-/* concatenate(+StringList, ?StringResult).
- * Concatenate a list of string (method pulled from internet).
- */
-concatenate(StringList, StringResult) :-
-    maplist(atom_chars, StringList, Lists),
-    append(Lists, List),
-    atom_chars(StringResult, List).
+
+
